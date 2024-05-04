@@ -504,6 +504,10 @@ input, textarea,select{
 .dashboard{
     margin-top: 6rem;
 }
+.sidebar__toggle{
+    display: none;
+}
+
 .dashboard__container{
     display: grid;
     grid-template-columns: 14rem auto;
