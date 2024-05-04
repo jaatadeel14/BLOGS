@@ -1,0 +1,32 @@
+from Crypto.Cipher import DES
+import binascii
+
+# Prompt the user to enter the key
+key = input('Enter your key: ').encode('utf-8')
+
+# Create a new DES cipher object with the key and ECB mode
+myDes = DES.new(key, DES.MODE_ECB)
+
+# Display options to the user
+print('Please select option:\n1. Encryption\n2. Decryption\n3. Exit')
+
+while True:
+    user_choice = input("Choose an option: ")
+    if user_choice == "1":
+        plain_text = input("Please enter your text: ")
+        cipher_text = myDes.encrypt(plain_text.encode("utf-8"))
+        print("Encrypted text:", cipher_text.hex())
+
+    elif user_choice == "2":
+        user_cipher_text = input("Please enter your cipher text: ")
+        # Convert the hexadecimal cipher text back to bytes
+        cipher_bytes = binascii.unhexlify(user_cipher_text)
+        # Decrypt the cipher text
+        text = myDes.decrypt(cipher_bytes)
+        print("Decrypted text:", text.decode('utf-8'))
+
+    elif user_choice == "3":
+        print("Quitting The Program....")
+        break
+    else:
+        print("Please Choose a correct option")
